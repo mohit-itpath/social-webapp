@@ -1,0 +1,42 @@
+{% extends 'myapp/base.html' %}
+{% block title %}Search All {% endblock title %}
+{% block content %}
+<!-- component -->
+<!-- This is an example component -->
+<div class="max-w-7xl mx-auto">
+	<div class="p-4 max-W-full bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-between items-center mb-4">
+            {% comment %} <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Customers</h3> {% endcomment %}
+            {% comment %} <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                View all
+            </a> {% endcomment %}
+        </div>
+        <div class="flow-root">
+            <ul role="list" class="divide-y divide-gray-200 ">
+                {% for user in users %}
+                <a href="{% url 'profile_retrieve' user.id %}">
+                    <li class="py-3 sm:py-4 hover:bg-cyan-700">
+                        <div class="flex items-center space-x-4 ">
+                            <div class="flex-shrink-0">
+                                <img class="w-9 h-9 rounded-full" src="{{user.image.url}}" alt="{{user.email}}">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-lg font-medium text-gray-900 truncate ">
+                                    {{user.first_name}} {{user.last_name}}
+                                </p>
+                                <p class="text-sm text-gray-500 truncate ">
+                                    {{user.email}}
+                                </p>
+                            </div>
+                            {% comment %} <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $320
+                            </div> {% endcomment %}
+                        </div>
+                    </li>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

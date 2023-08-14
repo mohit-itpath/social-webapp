@@ -1,0 +1,22 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+{% include 'myapp/messages.html' %}
+{% load widget_tweaks %}
+<div class="flex justify-center align-center p-5">
+    <div class=" block max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <form action="" method="post" enctype="multipart/form-data" class="p-4">
+            {% csrf_token %}
+            <div class="relative z-0 w-full mb-6 group">
+                <label class="">Caption : </label>
+                {{form.caption|attr:"rows:5"|attr:"style:resize:none;"}}
+            </div>
+            <div class="relative z-0 w-full mb-6 group">
+                <label class="">Image : </label>
+                {{form.post_image}}
+            </div>
+            <button type="submit" class="bg-blue-700 rounded-lg py-2 px-3 text-white">Add Post</button>
+            <a href="{% url 'home' %}" class="py-3 my-3 mx-2 text-blue-500 underline">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}

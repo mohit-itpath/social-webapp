@@ -1,0 +1,41 @@
+{% extends 'myapp/base.html' %}
+{% block title %}Edit{% endblock title %}
+{% block style %}
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+</style>
+{% endblock style %}
+{% block content %}
+{% load widget_tweaks %}
+    <div class="bg-blue-100 h-screen" style="background-color:#E5E5E5;!important" >
+        <div class="flex justify-center items-center mx-auto">
+            <div class="w-1/2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 ">
+                {% include 'myapp/messages.html' %}
+        <h1 class="text-2xl font-bold my-3">Edit</h1>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    {{form.non_field_errors}}
+                    <div class="w-full items-center">
+                       <button type="submit" class="rounded bg-blue-700 py-2 my-3 text-white w-1/5">Edit</button>
+                       <a href="{% url 'profile' %}" class="py-3 my-3 mx-2 text-blue-500 underline w-1/5">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+<script>
+    $("#id_phone").keypress(function(){
+        if($("#id_phone").val().length == 10){
+            return false;
+        }
+    });
+</script>
+{% endblock script %}
