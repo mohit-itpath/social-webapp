@@ -5,12 +5,17 @@ import sys
 
 # dotenv
 import dotenv
+from socialmedia.settings import base
 
 
 def main():
-    dotenv.read_dotenv()
+    dotenv.load_dotenv()
+
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'socialmedia.settings')
+    if base.DEBUG:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'socialmedia.settings.development')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'socialmedia.settings.production')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
